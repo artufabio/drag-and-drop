@@ -99,6 +99,32 @@ function updateDOM() {
   updateSavedColumns();
 }
 
+// Add new item to column list, Reset textbox
+function addNewToColumn(column) {
+  if (addItems[column].textContent !== '') {
+    const newItemText = addItems[column].textContent;
+  const selectedArray = listArrays[column];
+  selectedArray.push(newItemText);
+  addItems[column].textContent = '';
+  updateDOM();
+  }
+}
+
+// Show add item input box
+function showInputBox(column) {
+  addBtns[column].style.visibility = 'hidden';
+  saveItemBtns[column].style.display = 'flex';          // from 'display: none' to 'display: flex'
+  addItemContainers[column].style.display = 'flex';
+}
+
+// Hide item input box
+function hideInputBox(column) {
+  addBtns[column].style.visibility = 'visible';
+  saveItemBtns[column].style.display = 'none';
+  addItemContainers[column].style.display = 'none';
+  addNewToColumn(column);
+}
+
 // Allow arrays to reflect dragged and dropped items
 function rebuildArrays() {
   backlogListArray = [];
